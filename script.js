@@ -26,6 +26,7 @@ const prevBtn = document.querySelector('.prev');
 const nextBtn = document.querySelector('.next');
 let currentImageIndex = 0;
 
+// Open Lightbox
 productImages.forEach((img, index) => {
     img.addEventListener('click', () => {
         lightbox.style.display = 'block';
@@ -34,20 +35,24 @@ productImages.forEach((img, index) => {
     });
 });
 
+// Close Lightbox
 closeBtn.addEventListener('click', () => {
     lightbox.style.display = 'none';
 });
 
+// Previous Image
 prevBtn.addEventListener('click', () => {
     currentImageIndex = (currentImageIndex - 1 + productImages.length) % productImages.length;
     lightboxImg.src = productImages[currentImageIndex].src;
 });
 
+// Next Image
 nextBtn.addEventListener('click', () => {
     currentImageIndex = (currentImageIndex + 1) % productImages.length;
     lightboxImg.src = productImages[currentImageIndex].src;
 });
 
+// Keyboard Navigation
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         lightbox.style.display = 'none';
@@ -58,4 +63,13 @@ document.addEventListener('keydown', (e) => {
         currentImageIndex = (currentImageIndex + 1) % productImages.length;
         lightboxImg.src = productImages[currentImageIndex].src;
     }
+});
+
+// Simulate Loading Spinner
+const spinnerContainer = document.querySelector('.spinner-container');
+
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        spinnerContainer.style.display = 'none';
+    }, 2000); // Simulate a 2-second loading time
 });
